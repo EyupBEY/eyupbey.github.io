@@ -47,6 +47,13 @@
       <br>
       <input type="submit" value="Submit">
     </form>
-    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+    
+    <script>
+      var liste = ["tr","de","el","ru","es","ja","en"];
+      var item = liste[Math.floor(Math.random() * liste.length)];
+      s = document.createElement('script');
+      s.src = `https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit&hl=${item}`;
+      document.getElementsByTagName('head')[0].appendChild(s);
+    </script>
   </body>
 </html>

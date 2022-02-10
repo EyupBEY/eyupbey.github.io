@@ -1,0 +1,609 @@
+<!--
+  https://eyupbey.github.io/?1
+  https://eyupbey.github.io/?118
+-->
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <title>İnteraktif Periyodik Tablo</title>
+</head>
+
+<body onload="myFonkkk('HepsiniGoster')">
+<!--
+  <div id="fade" style="display: none; opacity: 0; width: 100vw; height: 100vh; position: fixed;background-color: #000000;z-index: 6;"></div>
+
+  <div id="background" style="display: none; width: fit-content; height: 100vh; position: fixed;background-color: #FCFCFC;z-index: 3;"></div>
+  <div id="info" style="display: none; width: fit-content; height: 100vh; position: fixed;left: 0; top: 50%;transform: translate(0%, -50%); background-color: #000000;z-index: 5;"></div>
+-->
+  <model-viewer camera-controls autoplay ar shadow-intensity="0.2" style="z-index: 4;width: 100vw;height: 100vh;" id="reveal" loading="eager" poster="https://raw.githubusercontent.com/EyupBEY/periodictable/main/element_090_thorium.png" src="https://raw.githubusercontent.com/EyupBEY/periodictable/main/element_090_thorium.glb"></model-viewer>
+
+
+  <nav>
+    &nbsp;
+    <b>İnteraktif Periyodik Tablo</b>
+    <button id="shareButton"><i class="fa fa-share-alt" style="color: #1CB050;"></i></button>
+    <button id="qrcodeButton" onclick="qrAlert()"><i class="fa fa-qrcode" style="color: #5C5C5C;"></i></button>
+    <button id="playButton"><i class="fa fa-play" style="color: #D80C2E;"></i></button>
+    <button id="copyButton" onclick="copyAlert()"><i class='fa fa-copy' style="color: #6434EC;"></i></button>
+    &nbsp;&nbsp;
+  </nav>
+
+  <div id="periodictable">
+  </div>
+
+  <footer>
+    <div id="classess">
+      &nbsp;
+      <button class="footerButton" id="HepsiniGoster" onclick="myFonkkk(this.id)">
+        Hepsini Göster
+      </button>
+      <button class="footerButton" id="AlkaliMetaller" onclick="myFonkkk(this.id)">
+        <div class="point"></div>Alkali Metaller
+      </button>
+      <button class="footerButton" id="ToprakAlkaliMetaller" onclick="myFonkkk(this.id)">
+        <div class="point"></div>Toprak Alkali Metaller
+      </button>
+      <button class="footerButton" id="GecisMetalleri" onclick="myFonkkk(this.id)">
+        <div class="point"></div>Geçiş Metalleri
+      </button>
+      <button class="footerButton" id="Ametaller" onclick="myFonkkk(this.id)">
+        <div class="point"></div>Ametaller
+      </button>
+      <button class="footerButton" id="DigerMetaller" onclick="myFonkkk(this.id)">
+        <div class="point"></div>Diğer Metaller
+      </button>
+      <button class="footerButton" id="YariMetaller" onclick="myFonkkk(this.id)">
+        <div class="point"></div>Yarı Metaller
+      </button>
+      <button class="footerButton" id="Halojenler" onclick="myFonkkk(this.id)">
+        <div class="point"></div>Halojenler
+      </button>
+      <button class="footerButton" id="SoyGazlar" onclick="myFonkkk(this.id)">
+        <div class="point"></div>Soy Gazlar
+      </button>
+      <button class="footerButton" id="Lantanitler" onclick="myFonkkk(this.id)">
+        <div class="point"></div>Lantanitler
+      </button>
+      <button class="footerButton" id="Aktinitler" onclick="myFonkkk(this.id)">
+        <div class="point"></div>Aktinitler
+      </button>
+      <button class="footerButton" id="BilinmeyenKimyasalOzellikler" onclick="myFonkkk(this.id)">
+        <div class="point"></div>Bilinmeyen Kimyasal Özellikler
+      </button>
+      &nbsp; &nbsp;
+    </div>
+  </footer>
+
+
+  <!--Navigation's Script-->
+  <script>
+    var shareButton = document.getElementById("shareButton");
+    shareButton.addEventListener('click', event => {
+      if (navigator.share) {
+        navigator.share({
+          title: 'İnteraktif Periyodik Tablo',
+          url: window.location.href
+        }).then(() => {
+          console.log('Thanks for sharing!');
+        })
+          .catch(console.error);
+      } else {
+        shareDialog.classList.add('is-open');
+      }
+    });
+
+    function qrAlert() {
+      try {
+        let template = document.createElement('template');
+        template.innerHTML = `<div id="hello" style="display: flex;justify-content: center;align-items: center;padding: 0 0 50px 0;"></div>`;
+
+        swal({
+          title: "QR Oluşturuldu",
+          content: document.importNode(template.content, true).querySelector('div'),
+          button: false
+        })
+
+        var qrcode = new QRCode(document.getElementById("hello"), {
+          text: window.location.href,
+          width: 128 * 2,
+          height: 128 * 2,
+          colorDark: "#5868bf",
+          colorLight: "#ffffff",
+          correctLevel: QRCode.CorrectLevel.L
+        });
+
+      } catch (err) {
+        swal({
+          title: "QR Oluşturma Başarısız...",
+          text: ":/",
+          icon: "error",
+          button: "Tamam",
+        });
+      }
+    }
+
+    function copyAlert() {
+      navigator.clipboard.writeText(window.location.href).then(() => {
+        swal({
+          title: "URL Panoya Kopyalandı!",
+          text: window.location.href,
+          icon: "success",
+          button: "Tamam"
+        })
+      })
+        .catch(() => {
+          swal({
+            title: "Bir Şeyler Ters Gitti...",
+            text: ":/",
+            icon: "error",
+            button: "Tamam",
+          })
+        });
+    }
+  </script>
+
+
+
+  <!--Button's Script-->
+  <script>
+    const xmlhttp = new XMLHttpRequest();
+    xmlhttp.onload = function () {
+      myObj = JSON.parse(this.responseText);
+      var css = "";
+      for (let index = 0; index < myObj.order.length; index++) {
+        if (index == 1) {
+          for (let i = 0; i < 16; i++) {
+            var btn = document.createElement("BUTTON");
+            btn.innerHTML = "";
+            btn.style.backgroundColor = "transparent";
+            btn.style.border = "transparent";
+            btn.className = "btn";
+            document.getElementById("periodictable").appendChild(btn);
+          }
+        }
+        if (index == 4) {
+          for (let i = 0; i < 10; i++) {
+            var btn = document.createElement("BUTTON");
+            btn.innerHTML = "";
+            btn.style.backgroundColor = "transparent";
+            btn.style.border = "transparent";
+            btn.className = "btn";
+            document.getElementById("periodictable").appendChild(btn);
+          }
+        }
+        if (index == 12) {
+          for (let i = 0; i < 10; i++) {
+            var btn = document.createElement("BUTTON");
+            btn.innerHTML = "";
+            btn.style.backgroundColor = "transparent";
+            btn.style.border = "transparent";
+            btn.className = "btn";
+            document.getElementById("periodictable").appendChild(btn);
+          }
+        }
+        if (index == myObj["lantan"]["number"] || index == myObj["aktinyum"]["number"]) {
+          index += 14;
+        }
+
+        var btn = document.createElement("BUTTON");
+        btn.innerHTML = `<div style="font-weight:bold;justify-self: start;font-size:1.75vh;margin: 0.3vh 0 0 0.5vh;">` + myObj[myObj.order[index]]["number"] + `</div>` + `<div style="font-size:3vh;font-weight:bold;">` + myObj[myObj.order[index]]["symbol"] + `</div>` + `<div style="font-size:1.25vh;font-weight:bold;">` + myObj[myObj.order[index]]["name"] + `</div>`;
+        btn.style.display = "grid";
+        btn.style.gridTemplateRows = "3";
+        btn.className = "btn";
+        btn.id = `btn` + myObj[myObj.order[index]]["number"];
+        btn.onclick = () => {
+          //Bilgiler Ekranı Açma Fonksiyonu
+          /*
+          *
+          *
+          *
+          *
+          *
+          *
+          *
+          *
+          *
+          *
+          *
+          *
+          *
+          *
+          *
+          *
+          *
+          *
+          *
+          *
+          *
+          */
+        };
+
+
+        if (myObj[myObj.order[index]]["category"] == "Ametaller") {
+          btn.style.backgroundColor = "#E5F0FF";
+          btn.style.color = "#0060F0";
+        }
+        else if (myObj[myObj.order[index]]["category"] == "Soy Gazlar") {
+          btn.style.backgroundColor = "#FFEBEE";
+          btn.style.color = "#D02B68";
+        }
+        else if (myObj[myObj.order[index]]["category"] == "Alkali Metaller") {
+          btn.style.backgroundColor = "#DBF8FF";
+          btn.style.color = "#228A9E";
+        }
+        else if (myObj[myObj.order[index]]["category"] == "Toprak Alkali Metaller") {
+          btn.style.backgroundColor = "#FFEBEB";
+          btn.style.color = "#DF334F";
+        }
+        else if (myObj[myObj.order[index]]["category"] == "Yarı Metaller") {
+          btn.style.backgroundColor = "#FEF9E6";
+          btn.style.color = "#945700";
+        }
+        else if (myObj[myObj.order[index]]["category"] == "Halojenler") {
+          btn.style.backgroundColor = "#EBE0CE";
+          btn.style.color = "#89644A";
+        }
+        else if (myObj[myObj.order[index]]["category"] == "Diğer Metaller") {
+          btn.style.backgroundColor = "#DCFAEB";
+          btn.style.color = "#002C00";
+        }
+        else if (myObj[myObj.order[index]]["category"] == "Geçiş Metalleri") {
+          btn.style.backgroundColor = "#F5ECFD";
+          btn.style.color = "#6232EC";
+        }
+        else if (myObj[myObj.order[index]]["category"] == "Lantanitler") {
+          btn.style.backgroundColor = "#E5F5FF";
+          btn.style.color = "#7596AC";
+        }
+        else if (myObj[myObj.order[index]]["category"] == "Aktinitler") {
+          btn.style.backgroundColor = "#FFEADB";
+          btn.style.color = "#D3582E";
+        }
+        else if (myObj[myObj.order[index]]["category"] == "Bilinmeyen Kimyasal Özellikler") {
+          btn.style.backgroundColor = "#CECECE";
+          btn.style.color = "#333333";
+        }
+        else {
+          btn.style.backgroundColor = "#CECECE";
+          btn.style.color = "#333333";
+          /*
+          Bunun aslında şöyle olması gerekiyormuş gibi geliyor bana ama hadi bakalım:
+          btn.style.backgroundColor = "transparent";
+          btn.style.color = "transparent";
+          */
+        }
+
+
+        css += `#btn` + (index + 1) + `:hover{ outline: 0.3vw solid ` + btn.style.color + `; }`;
+
+
+
+
+        var style = document.createElement('style');
+        if (style.styleSheet) {
+          style.styleSheet.cssText = css;
+        } else {
+          style.appendChild(document.createTextNode(css));
+        }
+        document.getElementsByTagName('head')[0].appendChild(style);
+
+        document.getElementById("periodictable").appendChild(btn);
+      }
+
+    }
+    xmlhttp.open("GET", "./chemicalElements.json");
+    xmlhttp.send();
+
+
+  </script>
+
+
+
+  <!--footerButton's Script-->
+  <script>
+    function myFonkkk(whichButton) {
+      var listemm = {
+        "AlkaliMetaller":[3,11,19,37,55,87],
+        "ToprakAlkaliMetaller":[4,12,20,38,56,88],
+        "Ametaller":[1,6,7,8,15,16,34],
+        "DigerMetaller":[13,31,49,50,81,82,83,113,114,115,116,117],
+        "YariMetaller":[5,14,32,33,51,52,84,85],
+        "Halojenler":[9,17,35,53],
+        "SoyGazlar":[2,10,18,36,54,86],
+        "Lantanitler":[57],
+        "Aktinitler":[89],
+        "BilinmeyenKimyasalOzellikler":[118],
+        "GecisMetalleri":[21,22,23,24,25,26,27,28,29,30,39,40,41,42,43,44,45,46,47,48,72,73,74,75,76,77,78,79,80,104,105,106,107,108,109,110,111,112]
+      };
+
+      var opaklık = "0.3";
+      switch (whichButton) {
+        case "HepsiniGoster":
+          document.getElementById("AlkaliMetaller").style.backgroundColor = "transparent";
+          document.getElementById("ToprakAlkaliMetaller").style.backgroundColor = "transparent";
+          document.getElementById("Ametaller").style.backgroundColor = "transparent";
+          document.getElementById("DigerMetaller").style.backgroundColor = "transparent";
+          document.getElementById("YariMetaller").style.backgroundColor = "transparent";
+          document.getElementById("Halojenler").style.backgroundColor = "transparent";
+          document.getElementById("SoyGazlar").style.backgroundColor = "transparent";
+          document.getElementById("Lantanitler").style.backgroundColor = "transparent";
+          document.getElementById("Aktinitler").style.backgroundColor = "transparent";
+          document.getElementById("BilinmeyenKimyasalOzellikler").style.backgroundColor = "transparent";
+          document.getElementById("GecisMetalleri").style.backgroundColor = "transparent";
+          document.getElementById("HepsiniGoster").style.backgroundColor = "#CECECE";
+
+          for (var i = 1; i <= 118; i++) {
+            document.getElementById("btn" + i).style.opacity = 1;
+            if (i == 57) i += 14;
+            else if (i == 89) i += 14;
+          }
+
+          break;
+        case "AlkaliMetaller":
+          document.getElementById("AlkaliMetaller").style.backgroundColor = "#DBF8FF";
+          document.getElementById("ToprakAlkaliMetaller").style.backgroundColor = "transparent";
+          document.getElementById("Ametaller").style.backgroundColor = "transparent";
+          document.getElementById("DigerMetaller").style.backgroundColor = "transparent";
+          document.getElementById("YariMetaller").style.backgroundColor = "transparent";
+          document.getElementById("Halojenler").style.backgroundColor = "transparent";
+          document.getElementById("SoyGazlar").style.backgroundColor = "transparent";
+          document.getElementById("Lantanitler").style.backgroundColor = "transparent";
+          document.getElementById("Aktinitler").style.backgroundColor = "transparent";
+          document.getElementById("BilinmeyenKimyasalOzellikler").style.backgroundColor = "transparent";
+          document.getElementById("GecisMetalleri").style.backgroundColor = "transparent";
+          document.getElementById("HepsiniGoster").style.backgroundColor = "transparent";
+
+
+          for (var i = 1; i <= 118; i++) {
+            document.getElementById("btn" + i).style.opacity = opaklık;
+            if (i == 57) i += 14;
+            else if (i == 89) i += 14;
+          }
+          for (let index = 0; index < listemm[whichButton].length; index++) {
+            document.getElementById("btn" + listemm[whichButton][index]).style.opacity = 1;
+          }
+          break;
+        case "ToprakAlkaliMetaller":
+          document.getElementById("AlkaliMetaller").style.backgroundColor = "transparent";
+          document.getElementById("ToprakAlkaliMetaller").style.backgroundColor = "#FFEBEB";
+          document.getElementById("Ametaller").style.backgroundColor = "transparent";
+          document.getElementById("DigerMetaller").style.backgroundColor = "transparent";
+          document.getElementById("YariMetaller").style.backgroundColor = "transparent";
+          document.getElementById("Halojenler").style.backgroundColor = "transparent";
+          document.getElementById("SoyGazlar").style.backgroundColor = "transparent";
+          document.getElementById("Lantanitler").style.backgroundColor = "transparent";
+          document.getElementById("Aktinitler").style.backgroundColor = "transparent";
+          document.getElementById("BilinmeyenKimyasalOzellikler").style.backgroundColor = "transparent";
+          document.getElementById("GecisMetalleri").style.backgroundColor = "transparent";
+          document.getElementById("HepsiniGoster").style.backgroundColor = "transparent";
+
+          for (var i = 1; i <= 118; i++) {
+            document.getElementById("btn" + i).style.opacity = opaklık;
+            if (i == 57) i += 14;
+            else if (i == 89) i += 14;
+          }
+          for (let index = 0; index < listemm[whichButton].length; index++) {
+            document.getElementById("btn" + listemm[whichButton][index]).style.opacity = 1;
+          }
+          break;
+        case "GecisMetalleri":
+          document.getElementById("AlkaliMetaller").style.backgroundColor = "transparent";
+          document.getElementById("ToprakAlkaliMetaller").style.backgroundColor = "transparent";
+          document.getElementById("Ametaller").style.backgroundColor = "transparent";
+          document.getElementById("DigerMetaller").style.backgroundColor = "transparent";
+          document.getElementById("YariMetaller").style.backgroundColor = "transparent";
+          document.getElementById("Halojenler").style.backgroundColor = "transparent";
+          document.getElementById("SoyGazlar").style.backgroundColor = "transparent";
+          document.getElementById("Lantanitler").style.backgroundColor = "transparent";
+          document.getElementById("Aktinitler").style.backgroundColor = "transparent";
+          document.getElementById("BilinmeyenKimyasalOzellikler").style.backgroundColor = "transparent";
+          document.getElementById("GecisMetalleri").style.backgroundColor = "#F5ECFD";
+          document.getElementById("HepsiniGoster").style.backgroundColor = "transparent";
+
+          for (var i = 1; i <= 118; i++) {
+            document.getElementById("btn" + i).style.opacity = opaklık;
+            if (i == 57) i += 14;
+            else if (i == 89) i += 14;
+          }
+          for (let index = 0; index < listemm[whichButton].length; index++) {
+            document.getElementById("btn" + listemm[whichButton][index]).style.opacity = 1;
+          }
+          break;
+        case "Ametaller":
+          document.getElementById("AlkaliMetaller").style.backgroundColor = "transparent";
+          document.getElementById("ToprakAlkaliMetaller").style.backgroundColor = "transparent";
+          document.getElementById("Ametaller").style.backgroundColor = "#E5F0FF";
+          document.getElementById("DigerMetaller").style.backgroundColor = "transparent";
+          document.getElementById("YariMetaller").style.backgroundColor = "transparent";
+          document.getElementById("Halojenler").style.backgroundColor = "transparent";
+          document.getElementById("SoyGazlar").style.backgroundColor = "transparent";
+          document.getElementById("Lantanitler").style.backgroundColor = "transparent";
+          document.getElementById("Aktinitler").style.backgroundColor = "transparent";
+          document.getElementById("BilinmeyenKimyasalOzellikler").style.backgroundColor = "transparent";
+          document.getElementById("GecisMetalleri").style.backgroundColor = "transparent";
+          document.getElementById("HepsiniGoster").style.backgroundColor = "transparent";
+
+          for (var i = 1; i <= 118; i++) {
+            document.getElementById("btn" + i).style.opacity = opaklık;
+            if (i == 57) i += 14;
+            else if (i == 89) i += 14;
+          }
+          for (let index = 0; index < listemm[whichButton].length; index++) {
+            document.getElementById("btn" + listemm[whichButton][index]).style.opacity = 1;
+          }
+          break;
+        case "DigerMetaller":
+          document.getElementById("AlkaliMetaller").style.backgroundColor = "transparent";
+          document.getElementById("ToprakAlkaliMetaller").style.backgroundColor = "transparent";
+          document.getElementById("Ametaller").style.backgroundColor = "transparent";
+          document.getElementById("DigerMetaller").style.backgroundColor = "#DCFAEB";
+          document.getElementById("YariMetaller").style.backgroundColor = "transparent";
+          document.getElementById("Halojenler").style.backgroundColor = "transparent";
+          document.getElementById("SoyGazlar").style.backgroundColor = "transparent";
+          document.getElementById("Lantanitler").style.backgroundColor = "transparent";
+          document.getElementById("Aktinitler").style.backgroundColor = "transparent";
+          document.getElementById("BilinmeyenKimyasalOzellikler").style.backgroundColor = "transparent";
+          document.getElementById("GecisMetalleri").style.backgroundColor = "transparent";
+          document.getElementById("HepsiniGoster").style.backgroundColor = "transparent";
+
+          for (var i = 1; i <= 118; i++) {
+            document.getElementById("btn" + i).style.opacity = opaklık;
+            if (i == 57) i += 14;
+            else if (i == 89) i += 14;
+          }
+          for (let index = 0; index < listemm[whichButton].length; index++) {
+            document.getElementById("btn" + listemm[whichButton][index]).style.opacity = 1;
+          }
+          break;
+        case "YariMetaller":
+          document.getElementById("AlkaliMetaller").style.backgroundColor = "transparent";
+          document.getElementById("ToprakAlkaliMetaller").style.backgroundColor = "transparent";
+          document.getElementById("Ametaller").style.backgroundColor = "transparent";
+          document.getElementById("DigerMetaller").style.backgroundColor = "transparent";
+          document.getElementById("YariMetaller").style.backgroundColor = "#FEF9E6";
+          document.getElementById("Halojenler").style.backgroundColor = "transparent";
+          document.getElementById("SoyGazlar").style.backgroundColor = "transparent";
+          document.getElementById("Lantanitler").style.backgroundColor = "transparent";
+          document.getElementById("Aktinitler").style.backgroundColor = "transparent";
+          document.getElementById("BilinmeyenKimyasalOzellikler").style.backgroundColor = "transparent";
+          document.getElementById("GecisMetalleri").style.backgroundColor = "transparent";
+          document.getElementById("HepsiniGoster").style.backgroundColor = "transparent";
+
+          for (var i = 1; i <= 118; i++) {
+            document.getElementById("btn" + i).style.opacity = opaklık;
+            if (i == 57) i += 14;
+            else if (i == 89) i += 14;
+          }
+          for (let index = 0; index < listemm[whichButton].length; index++) {
+            document.getElementById("btn" + listemm[whichButton][index]).style.opacity = 1;
+          }
+          break;
+        case "Halojenler":
+          document.getElementById("AlkaliMetaller").style.backgroundColor = "transparent";
+          document.getElementById("ToprakAlkaliMetaller").style.backgroundColor = "transparent";
+          document.getElementById("Ametaller").style.backgroundColor = "transparent";
+          document.getElementById("DigerMetaller").style.backgroundColor = "transparent";
+          document.getElementById("YariMetaller").style.backgroundColor = "transparent";
+          document.getElementById("Halojenler").style.backgroundColor = "#EBE0CE";
+          document.getElementById("SoyGazlar").style.backgroundColor = "transparent";
+          document.getElementById("Lantanitler").style.backgroundColor = "transparent";
+          document.getElementById("Aktinitler").style.backgroundColor = "transparent";
+          document.getElementById("BilinmeyenKimyasalOzellikler").style.backgroundColor = "transparent";
+          document.getElementById("GecisMetalleri").style.backgroundColor = "transparent";
+          document.getElementById("HepsiniGoster").style.backgroundColor = "transparent";
+
+          for (var i = 1; i <= 118; i++) {
+            document.getElementById("btn" + i).style.opacity = opaklık;
+            if (i == 57) i += 14;
+            else if (i == 89) i += 14;
+          }
+          for (let index = 0; index < listemm[whichButton].length; index++) {
+            document.getElementById("btn" + listemm[whichButton][index]).style.opacity = 1;
+          }
+          break;
+        case "SoyGazlar":
+          document.getElementById("AlkaliMetaller").style.backgroundColor = "transparent";
+          document.getElementById("ToprakAlkaliMetaller").style.backgroundColor = "transparent";
+          document.getElementById("Ametaller").style.backgroundColor = "transparent";
+          document.getElementById("DigerMetaller").style.backgroundColor = "transparent";
+          document.getElementById("YariMetaller").style.backgroundColor = "transparent";
+          document.getElementById("Halojenler").style.backgroundColor = "transparent";
+          document.getElementById("SoyGazlar").style.backgroundColor = "#FFEBEE";
+          document.getElementById("Lantanitler").style.backgroundColor = "transparent";
+          document.getElementById("Aktinitler").style.backgroundColor = "transparent";
+          document.getElementById("BilinmeyenKimyasalOzellikler").style.backgroundColor = "transparent";
+          document.getElementById("GecisMetalleri").style.backgroundColor = "transparent";
+          document.getElementById("HepsiniGoster").style.backgroundColor = "transparent";
+
+          for (var i = 1; i <= 118; i++) {
+            document.getElementById("btn" + i).style.opacity = opaklık;
+            if (i == 57) i += 14;
+            else if (i == 89) i += 14;
+          }
+          for (let index = 0; index < listemm[whichButton].length; index++) {
+            document.getElementById("btn" + listemm[whichButton][index]).style.opacity = 1;
+          }
+          break;
+        case "Lantanitler":
+          document.getElementById("AlkaliMetaller").style.backgroundColor = "transparent";
+          document.getElementById("ToprakAlkaliMetaller").style.backgroundColor = "transparent";
+          document.getElementById("Ametaller").style.backgroundColor = "transparent";
+          document.getElementById("DigerMetaller").style.backgroundColor = "transparent";
+          document.getElementById("YariMetaller").style.backgroundColor = "transparent";
+          document.getElementById("Halojenler").style.backgroundColor = "transparent";
+          document.getElementById("SoyGazlar").style.backgroundColor = "transparent";
+          document.getElementById("Lantanitler").style.backgroundColor = "#E5F5FF";
+          document.getElementById("Aktinitler").style.backgroundColor = "transparent";
+          document.getElementById("BilinmeyenKimyasalOzellikler").style.backgroundColor = "transparent";
+          document.getElementById("GecisMetalleri").style.backgroundColor = "transparent";
+          document.getElementById("HepsiniGoster").style.backgroundColor = "transparent";
+
+          for (var i = 1; i <= 118; i++) {
+            document.getElementById("btn" + i).style.opacity = opaklık;
+            if (i == 57) i += 14;
+            else if (i == 89) i += 14;
+          }
+          for (let index = 0; index < listemm[whichButton].length; index++) {
+            document.getElementById("btn" + listemm[whichButton][index]).style.opacity = 1;
+          }
+          break;
+        case "Aktinitler":
+          document.getElementById("AlkaliMetaller").style.backgroundColor = "transparent";
+          document.getElementById("ToprakAlkaliMetaller").style.backgroundColor = "transparent";
+          document.getElementById("Ametaller").style.backgroundColor = "transparent";
+          document.getElementById("DigerMetaller").style.backgroundColor = "transparent";
+          document.getElementById("YariMetaller").style.backgroundColor = "transparent";
+          document.getElementById("Halojenler").style.backgroundColor = "transparent";
+          document.getElementById("SoyGazlar").style.backgroundColor = "transparent";
+          document.getElementById("Lantanitler").style.backgroundColor = "transparent";
+          document.getElementById("Aktinitler").style.backgroundColor = "#FFEADB";
+          document.getElementById("BilinmeyenKimyasalOzellikler").style.backgroundColor = "transparent";
+          document.getElementById("GecisMetalleri").style.backgroundColor = "transparent";
+          document.getElementById("HepsiniGoster").style.backgroundColor = "transparent";
+
+          for (var i = 1; i <= 118; i++) {
+            document.getElementById("btn" + i).style.opacity = opaklık;
+            if (i == 57) i += 14;
+            else if (i == 89) i += 14;
+          }
+          for (let index = 0; index < listemm[whichButton].length; index++) {
+            document.getElementById("btn" + listemm[whichButton][index]).style.opacity = 1;
+          }
+          break;
+        case "BilinmeyenKimyasalOzellikler":
+          document.getElementById("AlkaliMetaller").style.backgroundColor = "transparent";
+          document.getElementById("ToprakAlkaliMetaller").style.backgroundColor = "transparent";
+          document.getElementById("Ametaller").style.backgroundColor = "transparent";
+          document.getElementById("DigerMetaller").style.backgroundColor = "transparent";
+          document.getElementById("YariMetaller").style.backgroundColor = "transparent";
+          document.getElementById("Halojenler").style.backgroundColor = "transparent";
+          document.getElementById("SoyGazlar").style.backgroundColor = "transparent";
+          document.getElementById("Lantanitler").style.backgroundColor = "transparent";
+          document.getElementById("Aktinitler").style.backgroundColor = "transparent";
+          document.getElementById("BilinmeyenKimyasalOzellikler").style.backgroundColor = "#CECECE";
+          document.getElementById("GecisMetalleri").style.backgroundColor = "transparent";
+          document.getElementById("HepsiniGoster").style.backgroundColor = "transparent";
+
+          for (var i = 1; i <= 118; i++) {
+            document.getElementById("btn" + i).style.opacity = opaklık;
+            if (i == 57) i += 14;
+            else if (i == 89) i += 14;
+          }
+          for (let index = 0; index < listemm[whichButton].length; index++) {
+            document.getElementById("btn" + listemm[whichButton][index]).style.opacity = 1;
+          }
+          break;
+      }
+    }
+  </script>
+</body>
+
+</html>

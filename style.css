@@ -1,0 +1,480 @@
+@media (orientation: landscape) {
+#info{
+width: 30vw; 
+height: 85vh; 
+left: 0%; 
+top: 50%;
+transform: translate(0%, -50%);
+}
+
+#name{
+padding: 0 0 5vh 4vh;
+}
+
+#info > p {
+padding: 0 4vh;
+}
+
+#reveal{
+right: 0%;
+top: 50%;
+transform: translate(0%, -50%); 
+width: 70vw;
+height: 100vh;
+}
+
+nav {
+font-size: 5vh;
+}
+
+#exitBtn{
+font-size: 5vh;
+width: 10vh;
+height: 10vh;
+}
+
+nav>button {
+font-size: 5vh;
+}
+
+
+div#periodictable {
+padding: 14vh 5vw 28vh 5vw;
+width: 93vw;
+}
+
+
+#classess>button {
+padding: 0.2vw 0.3vw;
+margin: auto 0.5vw 0.5vw 0.5vw;
+font-size: 1.25vw;
+border: 2px solid transparent;
+border-radius: 1vw;
+}
+
+.point {
+border-radius: 100%;
+width: 0.6vw;
+height: 0.6vw;
+display: inline-block;
+margin-right: 0.3vw;
+}
+
+footer>#classess>#AlkaliMetaller>.point {
+background-color: #DBF8FF;
+border: 0.2vw solid #228A9E;
+}
+
+footer>#classess>#ToprakAlkaliMetaller>.point {
+background-color: #FFEBEB;
+border: 0.2vw solid #DF334F;
+}
+
+footer>#classess>#GecisMetalleri>.point {
+background-color: #F5ECFD;
+border: 0.2vw solid #6232EC;
+}
+
+footer>#classess>#Ametaller>.point {
+background-color: #E5F0FF;
+border: 0.2vw solid #0060F0;
+}
+
+footer>#classess>#DigerMetaller>.point {
+background-color: #DCFAEB;
+border: 0.2vw solid #002C00;
+}
+
+footer>#classess>#YariMetaller>.point {
+background-color: #FEF9E6;
+border: 0.2vw solid #945700;
+}
+
+footer>#classess>#Halojenler>.point {
+background-color: #EBE0CE;
+border: 0.2vw solid #89644A;
+}
+
+footer>#classess>#SoyGazlar>.point {
+background-color: #FFEBEE;
+border: 0.2vw solid #D02B68;
+}
+
+footer>#classess>#Lantanitler>.point {
+background-color: #E5F5FF;
+border: 0.2vw solid #7596AC;
+}
+
+footer>#classess>#Aktinitler>.point {
+background-color: #FFEADB;
+border: 0.2vw solid #D3582E;
+}
+
+footer>#classess>#BilinmeyenKimyasalOzellikler>.point {
+background-color: #CECECE;
+border: 0.2vw solid #333333;
+}
+}
+
+/*************************************************************************************************************/
+
+@media (orientation: portrait) {
+#info{
+width: 100vw; 
+height: 70vh; 
+left: 0%; 
+bottom: 0%;
+transform: translate(0%, 0%);
+border-top: 2px solid #C0C0C0;
+}
+
+#name{
+padding: 0 0 5vw 4vw;
+}
+
+#info > p {
+padding: 0 4vw;
+}
+
+#reveal{
+right: 0%; 
+top: 0%;
+transform: translate(0%, 0%); 
+width: 100vw;
+height: 30vh;
+}
+
+nav {
+font-size: 5vw;
+}
+
+#exitBtn{
+font-size: 5vw;
+width: 10vw;
+height: 10vw;
+}
+
+nav>button {
+font-size: 5vw;
+}
+
+div#periodictable {
+padding: 5vh 10vw 15vh 10vw;
+width: 80vw;
+}
+
+#classess>button {
+padding: 0.2vh 0.3vh;
+margin: auto 0.5vh 0.5vh 0.5vh;
+font-size: 1.25vh;
+border: 2px solid transparent;
+border-radius: 1vh;
+}
+
+.point {
+border-radius: 100%;
+width: 0.6vh;
+height: 0.6vh;
+display: inline-block;
+margin-right: 0.3vh;
+}
+
+footer>#classess>#AlkaliMetaller>.point {
+background-color: #DBF8FF;
+border: 0.2vh solid #228A9E;
+}
+
+footer>#classess>#ToprakAlkaliMetaller>.point {
+background-color: #FFEBEB;
+border: 0.2vh solid #DF334F;
+}
+
+footer>#classess>#GecisMetalleri>.point {
+background-color: #F5ECFD;
+border: 0.2vh solid #6232EC;
+}
+
+footer>#classess>#Ametaller>.point {
+background-color: #E5F0FF;
+border: 0.2vh solid #0060F0;
+}
+
+footer>#classess>#DigerMetaller>.point {
+background-color: #DCFAEB;
+border: 0.2vh solid #002C00;
+}
+
+footer>#classess>#YariMetaller>.point {
+background-color: #FEF9E6;
+border: 0.2vh solid #945700;
+}
+
+footer>#classess>#Halojenler>.point {
+background-color: #EBE0CE;
+border: 0.2vh solid #89644A;
+}
+
+footer>#classess>#SoyGazlar>.point {
+background-color: #FFEBEE;
+border: 0.2vh solid #D02B68;
+}
+
+footer>#classess>#Lantanitler>.point {
+background-color: #E5F5FF;
+border: 0.2vh solid #7596AC;
+}
+
+footer>#classess>#Aktinitler>.point {
+background-color: #FFEADB;
+border: 0.2vh solid #D3582E;
+}
+
+footer>#classess>#BilinmeyenKimyasalOzellikler>.point {
+background-color: #CECECE;
+border: 0.2vh solid #333333;
+}
+}
+
+/*************************************************************************************************************/
+*::-webkit-scrollbar {
+width: 3px;
+height: 3px;
+padding: 10px;
+background-color: #E5E5E5;
+border-radius: 100vh;
+}
+
+*::-webkit-scrollbar-thumb {
+background-color: #CECECE;
+border-radius: 100vh;
+}
+
+*{
+font-family: Arial, Helvetica, sans-serif;
+text-decoration: none;
+}
+
+body {
+background-color: #FCFCFC;
+overscroll-behavior: none;
+overflow: hidden;
+width: 100vw;
+height: 100vh;
+display: grid;
+grid-template-columns: auto;
+grid-template-rows: auto auto;
+margin: 0;
+padding: 0;
+}
+
+div#periodictable {
+height: auto;
+display: grid;
+grid-template-columns: repeat(18, 10vh);
+overflow: scroll;
+grid-gap: 0.4vw;
+background-color: #FCFCFC;
+margin: 0;
+z-index: 1;
+}
+
+.btn {
+cursor: pointer;
+border: none;
+border-radius: 10px;
+aspect-ratio: 1 / 1;
+width: 10vh;
+height: 10vh;
+margin: 0;
+padding: 0;
+background-color: #c0c0c0;
+}
+
+nav {
+height: fit-content;
+width: 100vw;
+background-color: #FCFCFC;
+z-index: 2;
+border-bottom: 0.1vh solid #c0c0c0;
+padding: 10px;
+white-space: nowrap;
+overflow-x: auto;
+overflow-y: hidden;
+}
+
+nav>button {
+border: none;
+border-radius: 10px;
+padding: 5px 10px;
+aspect-ratio: 1 / 1;
+background-color: transparent;
+}
+
+nav>button:hover {
+background-color: #E5E5E5;
+cursor: pointer;
+}
+
+footer {
+background-color: #FCFCFC;
+font-size: 1.25vh;
+padding: 5px 10px;
+z-index: 2;
+width: 100vw;
+height: fit-content;
+position: fixed;
+top: 100%;
+left: 0%;
+transform: translate(0%, -100%);
+border-top: 0.1vh solid #c0c0c0;
+}
+footer>#classess>span>input{
+font-size: 1.25vh;
+}
+
+#classess>button:not(#classess > button:hover) {
+background-color: transparent;
+}
+
+#classess {
+white-space: nowrap;
+overflow-x: auto;
+}
+
+footer>#classess>button {
+cursor: pointer;
+}
+
+footer>#classess>#AlkaliMetaller:hover {
+background-color: #DBF8FF;
+}
+
+footer>#classess>#ToprakAlkaliMetaller:hover {
+background-color: #FFEBEB;
+}
+
+footer>#classess>#GecisMetalleri:hover {
+background-color: #F5ECFD;
+}
+
+footer>#classess>#Ametaller:hover {
+background-color: #E5F0FF;
+}
+
+footer>#classess>#DigerMetaller:hover {
+background-color: #DCFAEB;
+}
+
+footer>#classess>#YariMetaller:hover {
+background-color: #FEF9E6;
+}
+
+footer>#classess>#Halojenler:hover {
+background-color: #EBE0CE;
+}
+
+footer>#classess>#SoyGazlar:hover {
+background-color: #FFEBEE;
+}
+
+footer>#classess>#Lantanitler:hover {
+background-color: #E5F5FF;
+}
+
+footer>#classess>#Aktinitler:hover {
+background-color: #FFEADB;
+}
+
+footer>#classess>#BilinmeyenKimyasalOzellikler:hover {
+background-color: #CECECE;
+}
+
+footer>#classess>#HepsiniGoster:hover {
+background-color: #CECECE;
+}
+
+model-viewer#reveal {
+--poster-color: transparent;
+}
+
+#exitBtn:hover {
+background-color: #CECECE;
+cursor: pointer;
+}
+
+#exitBtn{
+position: fixed;
+top: 2%;
+right: 1%;
+transform: translate(-1%, -2%);
+display: none;
+color: #5C5C5C;
+z-index: 5;
+border: none;
+border-radius: 10px;
+aspect-ratio: 1 / 1;
+background-color: transparent;
+background-color: #E5E5E5;
+}
+
+#fade{
+display: none; 
+width: 100vw; 
+height: 100vh; 
+position: fixed;
+background-color: #000000;
+z-index: 6;
+}
+
+#background{
+display: none; 
+width: 100vw; 
+height: 100vh; 
+position: fixed;
+background-color: #F0F0F0;
+z-index: 3;
+}
+
+#WikipediaLink{
+text-decoration: none; 
+outline: 3px solid #333333; 
+padding: 5px 10px;
+border-radius: 30px;
+color: #333333;
+}
+
+#logo{
+color: #333333;
+font-weight: bold;
+}
+
+#shareButton > i{
+color: #1CB050;
+}
+
+#qrcodeButton > i{
+color: #5C5C5C;
+}
+
+#playButton > i{
+color: #D80C2E;
+}
+
+#copyButton > i{
+color: #6434EC;
+}
+
+#info{
+overflow-y: scroll;
+overflow-x: auto; 
+display: none; 
+position: fixed;
+background-color: #F0F0F0;
+z-index: 5;
+}
+
+#reveal{
+z-index: 4;
+display: none;
+position: fixed;
+}

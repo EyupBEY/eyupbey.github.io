@@ -61,8 +61,8 @@ margin-right: 0.3vw;
 }
 
 footer>#classess>#AlkaliMetaller>.point {
-background-color: #135762;
-border: 0.2vw solid #228A9E;
+background-color: #dbf8ff;
+border: 0.2vw solid #135762;
 }
 
 footer>#classess>#ToprakAlkaliMetaller>.point {
@@ -180,8 +180,8 @@ margin-right: 0.3vh;
 }
 
 footer>#classess>#AlkaliMetaller>.point {
-background-color: #135762;
-border: 0.2vh solid #228A9E;
+background-color: #dbf8ff;
+border: 0.2vh solid #135762;
 }
 
 footer>#classess>#ToprakAlkaliMetaller>.point {
@@ -346,7 +346,7 @@ cursor: pointer;
 }
 
 footer>#classess>#AlkaliMetaller:hover {
-background-color: #135762;
+background-color: #dbf8ff;
 }
 
 footer>#classess>#ToprakAlkaliMetaller:hover {

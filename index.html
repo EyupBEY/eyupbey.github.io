@@ -9,8 +9,8 @@
   <meta property="og:image"
     content="https://raw.githubusercontent.com/EyupBEY/eyupbey.github.io/main/periodicTable.png" />
   <meta id="theme-meta" name="theme-color" content="rgba(252, 252, 252, 1)">
-  <meta name="keywords" content="Canvas, Çizim, Serbest, Kalem, 2D" />
-  <meta name="description" content="3 Boyutlu İnteraktif Periyodik Tablo" />
+  <meta name="keywords" content="Canvas, Çizim, Serbest, Kalem, Not" />
+  <meta name="description" content="Serbest bir şekilde notlarınızı canvasa almak artık çok kolay." />
   <meta name="author" content="EyupBEY | Hamid Emin Özkanlı" />
 
   <link rel="canonical" href="https://eyupbey.github.com/">
@@ -105,10 +105,12 @@
     }
     
     #canvas{
-      border: 2px solid black;
+      border: none;
+      margin: 0;
+      padding: 0;
     }
   </style>
-  <title>İnteraktif Periyodik Tablo</title>
+  <title>Serbest Canvas</title>
 </head>
 
 <body>
@@ -134,9 +136,9 @@
 
     function draw(e){
         if(!painting) return;
-        ctx.lineWidth = 10;
+        ctx.lineWidth = 5;
         ctx.lineCap = "round";
-        ctx.strokeStyle = "#00967F";
+        ctx.strokeStyle = "#155d49";
 
         ctx.lineTo(e.clientX, e.clientY);
         ctx.stroke();
